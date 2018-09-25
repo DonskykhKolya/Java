@@ -1,0 +1,25 @@
+package com.gmail.ndonskih63;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		File fileOne = new File("Java.txt");
+		try (PrintWriter a = new PrintWriter("Java.txt")) {
+			a.println("All you need is love Java !");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR FILE WRITE");
+		}
+		File fileTwo = new File("C.txt");
+		try (PrintWriter b = new PrintWriter("C.txt")) {
+			b.println("All you need is love C !");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR FILE WRITE");
+		}	
+		AllYouNeed create = new AllYouNeed(fileOne, fileTwo); 
+	}
+}
