@@ -1,0 +1,50 @@
+package com.gmail.ndonskih63;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+
+public class AllYouNeed {
+
+	private int val = 0;
+	private File merge = new File("merge.txt");
+	
+	public AllYouNeed(File fileOne, File fileTwo) {
+		mergeFiles(fileOne, fileTwo);
+	}
+	
+	public void mergeFiles(File fileOne, File fileTwo) {
+		if(!fileOne.exists() || !fileTwo.exists()) {
+			System.out.println("Files don't exist!");
+		} else {
+			StringBuilder sb = new StringBuilder();
+			for(int i = 0; i < getText(fileTwo).length; i++) {
+				for(int j = 0; j < getText(fileOne).length; j++) {
+					if(getText(fileOne)[j].equalsIgnoreCase(getText(fileTwo)[i])) {
+						sb.append(getText(fileOne)[j]);
+						sb.append(" ");
+						val++;
+					}
+				}
+			}
+			try(PrintWriter pw = new PrintWriter(merge)) {
+				merge.createNewFile();
+				pw.println(sb.toString());
+				System.out.println(val + " words were copied!");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	private String[] getText(File fileZero) {
+		String[] arr = null;
+		try(BufferedReader bf = new BufferedReader(new FileReader(fileZero))) {
+			arr = bf.readLine().split(" ");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		return arr;
+	}
+}
