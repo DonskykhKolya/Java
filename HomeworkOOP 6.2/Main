@@ -1,0 +1,31 @@
+package com.gmail.ndonskih63;
+
+import java.util.Random;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		int[] thr = new int[300000000];
+		Random rn = new Random();
+		for(int i = 0; i < thr.length; i++) {
+			thr[i] = rn.nextInt(100);
+		}
+		
+		long begin1 = System.currentTimeMillis();
+		SumThread.summa(thr, 4);
+		long end1 = System.currentTimeMillis();
+		System.out.println("Threads method: array = " + thr.length + 
+							", sum = " + SumThread.summa(thr, 4) + 
+							", time = " + (end1 - begin1) + " ms");
+		
+		long begin2 = System.currentTimeMillis();
+		long sum = 0;
+		for(int j = 0; j < thr.length; j++) {
+			sum += thr[j];
+		}
+		long end2 = System.currentTimeMillis();
+		System.out.println("Normal method: array = " + thr.length + 
+				", sum = " + sum + ", time = " + (end2 - begin2) + " ms");	
+	}
+}
