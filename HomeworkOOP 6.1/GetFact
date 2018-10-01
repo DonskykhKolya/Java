@@ -1,0 +1,42 @@
+package com.gmail.ndonskikh63;
+
+import java.math.BigInteger;
+
+public class GetFact implements Runnable {
+	
+	private int x;
+
+	public GetFact(int x) {
+		super();
+		this.x = x;
+	}
+
+	public GetFact() {
+		super();
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+	
+	public BigInteger calcFact(int num) {
+		BigInteger fact = new BigInteger("1");
+		for (int i = 1; i <= num; i++) {
+			fact = fact.multiply(new BigInteger("" + i));
+			}
+		return fact;
+	}
+
+	@Override
+	public void run() {
+		Thread thr = Thread.currentThread();
+		System.out.println(thr.getName() + " -> " + x + "! = " + calcFact(x));
+		
+	}
+	
+	
+}
