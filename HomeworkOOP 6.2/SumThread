@@ -1,0 +1,29 @@
+package com.gmail.ndonskih63;
+
+public class SumThread {
+	
+	public static long summa(int[] arr, int th) {
+		
+		GetThread[] arrThr = new GetThread[th];
+		
+		for(int i = 0; i < th; i++) {
+			int part = arr.length / th;
+			int begin = i * part;
+			int end = (i + 1) * part;
+			
+			arrThr[i] = new GetThread(arr, begin, end);
+		}
+		for(int j = 0; j < arrThr.length; j++) {
+			try {
+				arrThr[j].getThr().join();
+			} catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		long sum = 0;
+		for(int k = 0; k < arrThr.length; k++) {
+			sum += arrThr[k].getSum();
+		}
+		return sum;
+	}
+}
