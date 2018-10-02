@@ -1,0 +1,11 @@
+package com.gmail.ndonskih63;
+
+public class Main {
+
+	public static void main(String[] args) {
+		String from = "C:\\Test1";
+        String to = "C:\\Test2";
+        int threads = 10;
+        ThreadCopy.multiThread(from, to, threads);
+	}
+}
