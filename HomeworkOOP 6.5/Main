@@ -1,0 +1,9 @@
+package com.gmail.ndonskih63;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Thread thr = new Thread(new Checking());
+		thr.start();
+	}
+}
