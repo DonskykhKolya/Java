@@ -1,0 +1,30 @@
+package com.gmail.ndonskih63;
+
+import java.io.File;
+
+public class Checking implements Runnable{
+
+	@Override
+	public void run() {
+		Thread thr = Thread.currentThread();
+		File fold = new File("C://Test1");
+		int a = fold.listFiles().length;
+		
+		for(; !thr.isInterrupted();) {
+			if(fold.listFiles().length > a) {
+				System.out.println("File added!");
+				a = fold.listFiles().length;
+			}
+			if (fold.listFiles().length < a) {
+				System.out.println("File was deleted!");
+				a = fold.listFiles().length;
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+}	
