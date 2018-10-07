@@ -1,0 +1,59 @@
+package com.gmail.ndonskih63;
+
+public class ThreadsWithShell implements Runnable{
+	
+	private int[] pieceOne;
+    private int[] pieceTwo;
+    private int[] arr;
+    private Thread thr;
+	
+    public ThreadsWithShell(int[] pieceOne, int[] pieceTwo) {
+		super();
+		this.pieceOne = pieceOne;
+		this.pieceTwo = pieceTwo;
+		thr = new Thread(this);
+		thr.start();
+	}
+
+	public int[] getArr() {
+		return arr;
+	}
+
+	public Thread getThr() {
+		return thr;
+	}
+	
+	public int[] compound(int[] pieceOne, int[] pieceTwo) {
+		int l = pieceOne.length + pieceTwo.length;
+		int[] comp = new int[l];
+		int i1 = 0;
+		int i2 = 0;
+		for (int i = 0; i < l; i++) {
+	            if (i1 == pieceOne.length) {
+	                comp[i] = pieceTwo[i2++];
+	            } else if (i2 == pieceTwo.length) {
+	            	comp[i] = pieceOne[i1++];
+	            } else {
+	                if (pieceOne[i1] < pieceTwo[i2]) {
+	                	comp[i] = pieceOne[i1++];
+	                } else {
+	                	comp[i] = pieceTwo[i2++];
+	                }
+	            }
+	        }
+		return comp;
+	}
+
+	@Override
+	public void run() {
+		try {
+			OnlyThreads a = new OnlyThreads(pieceOne);
+			OnlyThreads b = new OnlyThreads(pieceTwo);
+			a.getThr().join();
+			b.getThr().join();
+		} catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+		arr = compound(pieceOne, pieceTwo);
+	}  
+}
