@@ -1,0 +1,5 @@
+Usual Shell's sorting.
+Time: 1493ms. Array length: 15000000
+
+Multithreaded Shell's sorting.
+Time: 1004ms. Array length: 15000000
