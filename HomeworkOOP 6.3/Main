@@ -1,0 +1,62 @@
+package com.gmail.ndonskih63;
+
+import java.util.Random;
+
+public class Main {
+	
+	public static void shellsMeth(int[] arr) {
+		int l = arr.length;
+		int half = l / 2;
+		while(half > 0) {
+			for(int i = 0; i < (l - half); i++) {
+				int j = i;
+				while((j >= 0) && arr[j] > arr[j + half]) {
+					int tmp = arr[j];
+					arr[j] = arr[j + half];
+					j--;
+				}
+			}
+			half /= 2;
+		}
+	}
+	public static void main(String[] args) {
+		
+		long start;
+        long end;
+        Random rn = new Random();
+        int[] arr = new int[15000000];
+        int half = arr.length / 2;
+        int[] pieceOne = new int[half];
+        int[] pieceTwo;
+        if (half * 2 != arr.length) {
+        	pieceTwo = new int[half + 1];
+        } else pieceTwo = new int[half];
+        
+        for(int i = 0; i < arr.length; i++) {
+        	arr[i] = rn.nextInt(500);
+        	if (i < half) {
+        		pieceOne[i] = arr[i];
+        	}
+        	if (i >= half) {
+        		pieceTwo[i - half] = arr[i];
+        	}
+        }
+        try {
+        	start = System.currentTimeMillis();
+        	shellsMeth(arr);
+        	end = System.currentTimeMillis();
+        	System.out.println("Usual Shell's sorting.\nTime: " + (end - start) + "ms. Array length: " + arr.length + "\n");
+        	
+        	start = System.currentTimeMillis();
+        	ThreadsWithShell tws = new ThreadsWithShell(pieceOne, pieceTwo);
+        	tws.getThr().join();
+        	arr = tws.getArr();
+        	end = System.currentTimeMillis();
+        	System.out.println("Multithreaded Shell's sorting.\nTime: " + (end - start) + "ms. Array length: " + arr.length);
+        } catch(InterruptedException e) {
+        	e.printStackTrace();
+        }
+        
+	}
+
+}
