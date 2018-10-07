@@ -1,0 +1,20 @@
+package com.gmail.ndonskih63;
+
+public class OnlyThreads implements Runnable{
+
+	private int[] arr;
+	private Thread thr;
+	public OnlyThreads(int[] arr) {
+		super();
+		this.arr = arr;
+		thr = new Thread(this);
+		thr.start();
+	}
+	public Thread getThr() {
+		return thr;
+	}
+	@Override
+	public void run() {
+		Main.shellsMeth(arr);
+	}
+}
