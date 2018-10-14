@@ -1,0 +1,21 @@
+package com.gmail.ndonskih63;
+
+import java.io.File;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		String from = "C://Users//Nikolas//Test2//09. Pisces.mp3";
+        String to = "C://Users//Nikolas//Test1";
+        File fileFrom = new File(from);
+        File fileTo = new File(to);
+
+        Copy fileCopy = new Copy(fileFrom, fileTo);
+        Thread thr1 = new Thread(new OutputResult(fileCopy));
+        Thread thr2 = new Thread(fileCopy);
+        thr2.start();
+        thr1.start();
+	}
+
+}
