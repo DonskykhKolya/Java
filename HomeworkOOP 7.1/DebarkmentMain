@@ -1,0 +1,15 @@
+package com.gmail.ndonskih63;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+public class DebarkmentMain {
+
+	public static void main(String[] args) {
+		ExecutorService thr = Executors.newFixedThreadPool(2);
+		
+		thr.execute(new Barge("First"));
+		thr.execute(new Barge("Second"));
+		thr.execute(new Barge("Third"));
+	}
+}
