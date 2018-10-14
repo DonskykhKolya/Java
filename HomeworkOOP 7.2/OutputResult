@@ -1,0 +1,23 @@
+package com.gmail.ndonskih63;
+
+public class OutputResult implements Runnable {
+
+	private Copy fileCopy;
+
+	public OutputResult() {
+		super();
+	}
+
+	public OutputResult(Copy fileCopy) {
+		super();
+		this.fileCopy = fileCopy;
+	}
+
+	@Override
+	public void run() {
+		while (!fileCopy.isStatus()) {
+			System.out.println("Copying " + fileCopy.getProgress() + "%");
+		}
+		System.out.println("Copying completed!");
+	}
+}
