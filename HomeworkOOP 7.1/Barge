@@ -1,0 +1,39 @@
+package com.gmail.ndonskih63;
+
+public class Barge implements Runnable {
+	
+	private int box = 10;
+	private String name;
+	
+	public Barge(String name) {
+		super();
+		this.name = name;
+	}
+	public int getShpt() {
+		return box;
+	}
+
+	public String getName() {
+		return name;
+	}
+	@Override
+	public void run() {
+		System.out.println("Start of unloading " + name);
+		while(box > 0) {
+			System.out.println("Left unload " + box + " boxes from " + name);
+			box--;
+			try {
+				Thread.currentThread().sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		if(box == 0) {
+			System.out.println(name + " unloaded");
+		}
+	}
+	@Override
+	public String toString() {
+		return "Barge [boxes = " + box + ", name = " + name + "]";
+	}	
+}
