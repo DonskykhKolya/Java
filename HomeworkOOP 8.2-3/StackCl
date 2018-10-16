@@ -1,0 +1,57 @@
+package com.gmail.ndonskih63;
+
+public class StackCl {
+	
+	private Object [] stack = new Object[0];
+
+	public StackCl() {
+		super();
+	}
+	
+	public void createStack(Object obj, BlackList bl) {
+		if(bl.checkObject(obj)) {
+			Object[] o = new Object[stack.length + 1];
+			System.arraycopy(stack, 0, o, 0, stack.length);
+			o[o.length - 1] = obj;
+			stack = o;
+		} else {
+			System.out.println("Object " + obj.toString() + " blacklisted");
+		}
+	}	
+	public void changeStack(Object obj) {
+		int n = 0;
+		for(int i = 0; i < stack.length; i++) {
+			if(stack[i] == obj) {
+				n++;
+				System.out.println("Object " + stack[i] + 
+						" was found in stek and successfully deleted!");
+				Object[] ob = new Object[stack.length - 1];
+				System.arraycopy(stack, 0, ob, 0, i);
+				for(int j = i; j < ob.length; j++) {
+					ob[j] = stack[j +1];
+				}
+				stack = ob;
+			}
+		}
+		if(n == 0) {
+			System.out.println(obj.toString() + " not found!");
+		}
+	}
+	public void toTop() {
+		if(stack.length > 0) {
+			System.out.println(stack.length - 1);
+		} else {
+			System.out.println("Blank stack!");
+		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(Object obj1 : stack) {
+			sb.append(obj1).append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
+	
+}
