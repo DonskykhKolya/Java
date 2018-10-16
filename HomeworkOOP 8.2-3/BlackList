@@ -1,0 +1,46 @@
+package com.gmail.ndonskih63;
+
+public class BlackList {
+	private Class[] blArr = new Class[0];
+
+	public BlackList() {
+		super();
+	}
+	
+	private boolean checkBlackList(Class cl) {
+		for (Class clOne : blArr) {
+			if (clOne != null || clOne == cl) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkObject(Object obj) {
+		if (obj == null) {
+			return false;
+		}
+		Class cl = obj.getClass();
+		return checkBlackList(cl);
+	}
+	
+	public void addToBL(Class cl) {
+		if(checkBlackList(cl)) {
+			return;
+		}
+		Class[] tmp = new Class[blArr.length +1];
+		System.arraycopy(blArr, 0, tmp, 0, blArr.length);
+		tmp[tmp.length - 1] = cl;
+		blArr = tmp;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for(Class class1 : blArr) {
+			sb.append(class1).append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
+	
+}
