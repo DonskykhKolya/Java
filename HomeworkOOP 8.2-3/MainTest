@@ -1,0 +1,32 @@
+package com.gmail.ndonskih63;
+
+public class MainTest {
+
+	public static void main(String[] args) {
+		
+		BlackList bl = new BlackList();
+		bl.addToBL(boolean.class);
+		System.out.println("B.L.: ");
+		System.out.println(bl);
+		
+		StackCl stack = new StackCl();
+		stack.createStack("One", bl);
+		stack.createStack(5, bl);
+		stack.createStack("Two", bl);
+		stack.createStack(true, bl);
+		stack.createStack("Three", bl);
+		stack.createStack(8, bl);
+		
+		System.out.println("Stack:");
+		System.out.println(stack);
+		System.out.println();
+		System.out.println("Top value from stek: ");
+		stack.toTop();
+
+		System.out.println("Delete value: ");
+		stack.changeStack("Two");
+		System.out.println("Stack after removal: ");
+		System.out.println(stack);
+	}
+
+}
