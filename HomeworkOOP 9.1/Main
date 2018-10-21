@@ -1,0 +1,27 @@
+package com.gmail.ndonskih63;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Main {
+
+	public static void main(String[] args) {
+		
+		List<Integer> lst = new ArrayList<>();
+		Random rn = new Random();
+		
+		for(int i = 0; i < 10; i++) {
+			lst.add(rn.nextInt(10));
+		}
+		System.out.println("Initial list:\n" + lst);
+		
+		lst.remove(0);
+		lst.remove(0);
+		lst.remove(lst.size() - 1);
+		
+		System.out.println();
+		System.out.println("Final list:\n" + lst);
+	}
+
+}
