@@ -1,0 +1,31 @@
+package com.gmail.ndonskih63;
+
+import java.util.ArrayDeque;
+
+public class Que {
+
+	ArrayDeque<String> queue = new ArrayDeque<String>();
+
+	public Que() {
+		super();
+	}
+
+	public void toQueue(String per) {
+		queue.addLast(per);
+	}
+
+	public void getCola() {
+		if (queue.size() > 0) {
+			queue.addLast(queue.pollFirst());
+			queue.addLast(queue.getLast());
+			System.out.println(queue.toString());
+		} else
+			System.out.println("The queue doesn`t exist");
+	}
+
+	@Override
+	public String toString() {
+		return " " + queue + " ";
+	}
+
+}
