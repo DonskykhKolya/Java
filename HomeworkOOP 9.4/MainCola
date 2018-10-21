@@ -1,0 +1,27 @@
+package com.gmail.ndonskih63;
+
+public class MainCola {
+	
+	public static void main(String[] args) {
+		
+		Que queue = new Que();
+		
+		queue.toQueue("Sheldon");
+		queue.toQueue("Leonard");
+		queue.toQueue("Volovitc");
+		queue.toQueue("Kutrapalli");
+		queue.toQueue("Penny");
+		
+		System.out.println("Queue for double cola:");
+		System.out.println(queue.toString());
+		
+		System.out.println("\nQueue for double cola after sale:");
+		queue.getCola();
+		queue.getCola();
+		queue.getCola();
+		queue.getCola();
+		queue.getCola();
+		
+	}
+
+}
