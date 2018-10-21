@@ -1,0 +1,34 @@
+package com.gmail.ndonskih63;
+
+public class Chars {
+	
+	private char ch;
+	private int frequency;
+	
+	public Chars(char ch, int frequency) {
+		super();
+		this.ch = ch;
+		this.frequency = frequency;
+	}
+	public Chars(char ch) {
+		this(ch, 1);
+	}
+	
+	public Chars() {
+		super();
+	}
+	public char getCh() {
+		return ch;
+	}
+	public int getFrequency() {
+		return frequency;
+	}
+	
+	public void inc() {
+		frequency++;
+	}
+	@Override
+	public String toString() {
+		return "Letter " + getCh() + ": " + getFrequency() + " times.";
+	}
+}
