@@ -1,0 +1,51 @@
+package com.gmail.ndonskih63;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class DoIt {
+
+	private static final long serialVersionUID = 1L;
+	private Vocabulary voc;
+    private String inputFile;
+    private String outputFile;
+
+	public DoIt(Vocabulary voc) {
+        super();
+        this.voc = voc;
+        this.inputFile = "English.in.txt";
+        this.outputFile = "Ukranian.out.txt";
+    }
+
+    public void translate() {
+        StringBuilder text = new StringBuilder();
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(inputFile));
+            String buffer;
+            do {
+                buffer = br.readLine();
+                text.append(buffer.toLowerCase());
+            }
+            while (buffer.equals(null));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String[] text1 = text.toString().split("[ -,;:.!?№%()]");
+        System.out.println("In English: " + text.toString());
+        StringBuilder translate = new StringBuilder();
+        for (String x : text1) {
+            String findWord = voc.getDict().get(x);
+            translate.append(findWord + " ");
+        }
+        System.out.println("In Ukranian: " + translate.toString());
+
+        try (BufferedWriter output = new BufferedWriter(new FileWriter(outputFile))) {
+            output.write(translate.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+}
