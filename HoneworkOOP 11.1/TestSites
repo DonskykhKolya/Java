@@ -1,0 +1,30 @@
+package com.gmail.ndonskih63;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.UnknownHostException;
+
+public class TestSites {
+
+	public static void main(String[] args) {
+
+		try (BufferedReader br = new BufferedReader(new FileReader("testSites.txt"))) {
+			String sites = "";
+			for (; (sites = br.readLine()) != null;) {
+				try {
+					URL info = new URL(sites);
+					HttpURLConnection huc = (HttpURLConnection) info.openConnection();
+					int test = huc.getResponseCode();
+					System.out.println(sites + " is available");
+				} catch (Exception e1) {
+					System.out.println(sites + " is not available");
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
