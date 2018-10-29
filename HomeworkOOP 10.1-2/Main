@@ -1,1 +1,22 @@
+package com.gmail.ndonskih63;
 
+public class Main {
+
+	public static void main(String[] args) {
+
+		Vocabulary voc = new Vocabulary();
+        voc.addWord("my", "мій");
+        voc.addWord("heart", "серце");
+        voc.addWord("i", "я");
+        voc.addWord("live", "живу");
+        voc.addWord("in", "в");
+        voc.addWord("kyiv", "київ");
+        
+        DoIt trn = new DoIt(voc);
+        trn.translate();
+
+        voc.getInteract();
+        voc.saveDict("vocabulary.txt");
+        voc.uploadDict("vocabulary.txt");
+    }
+}
